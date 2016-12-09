@@ -74,3 +74,6 @@ opensource nel modo piu' completo del termine :) senza alcuna restrizione!
 
 ## Ringraziamenti
 a mia moglie che mi ha permesso di trovare il tempo per questo progetto guardando il bambino ;)
+
+## Autori
+mpalitto
