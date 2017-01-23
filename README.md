@@ -13,17 +13,17 @@ Per connettere il Client con il Server bisogna:
 - aprire due finestre di Prompt
 
 
-Finestra "JavaSockets_Server":
-1. cd Desktop (per andare nella directory "Desktop")
-2. cd NetBeansProjects (per andare nella directory "NetBeansProjects")
-3. cd JavaSockets_Server (per andare nella directory "JavaSockets_Server")
-4. cd dist (per andare nella directory "dist")
-5. java -jar JavaSockets_Server.jar 1234 ()
+  Finestra "JavaSockets_Server":
+    1. cd Desktop (per andare nella directory "Desktop")
+    2. cd NetBeansProjects (per andare nella directory "NetBeansProjects")
+    3. cd JavaSockets_Server (per andare nella directory "JavaSockets_Server")
+    4. cd dist (per andare nella directory "dist")
+    5. java -jar JavaSockets_Server.jar 1234 ()
 
 
-Finestra "JavaSockets_Client":
-1. cd Desktop (per andare nella directory "Desktop")
-2. cd NetBeansProjects (per andare nella directory "NetBeansProjects")
-3. cd JavaSockets_Client (per andare nella directory "JavaSockets_Server")
-4. cd dist (per andare nella directory "dist")
-5. java -jar JavaSockets_Client.jar 127.0.0.1 1234()
+  Finestra "JavaSockets_Client":
+    1. cd Desktop (per andare nella directory "Desktop")
+    2. cd NetBeansProjects (per andare nella directory "NetBeansProjects")
+    3. cd JavaSockets_Client (per andare nella directory "JavaSockets_Server")
+    4. cd dist (per andare nella directory "dist")
+    5. java -jar JavaSockets_Client.jar 127.0.0.1 1234()
