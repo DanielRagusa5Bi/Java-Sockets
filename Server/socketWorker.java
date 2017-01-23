@@ -7,16 +7,16 @@
  */
 class SocketWorker implements Runnable {
     private Socket client;
-    String nickname;
+    String nickname; //dichiaro la variabile di tipo String
 
     
     //Constructor: inizializza le variabili
     SocketWorker(Socket client) {
         this.client = client;
-        System.out.println("Connessione stabilita con: " + client);
+        System.out.println("Connessione stabilita con: " + client); //
     }
     
-    // Questa e' la funzione che viene lanciata quando il nuovo "Thread" viene generato
+    // Questa e' la funzione che viene lanciata quando il nuovo "Thread" viene lanciato
     public void run(){
         
         try{
@@ -24,7 +24,7 @@ class SocketWorker implements Runnable {
             BufferedReader in = null;
             PrintWriter out = null;
             try{
-                // connessione con il socket per ricevere (in) e mandare(out) il testo
+                // connessione con il socket per ricevere (input) e mandare(output) il testo
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 out = new PrintWriter(client.getOutputStream(), true);
             } catch (IOException e) {
@@ -33,12 +33,13 @@ class SocketWorker implements Runnable {
             }
             // Codice che permette di stampare la lista degli uteni connessi, con il commando "ListaUtenti"
             String line = "";
-            int clientPort = client.getPort(); //il "nome" del mittente (client)
+            int clientPort = client.getPort(); //il "nome" del mittente
             nickname = in.readLine();
             ServerTestoMultiThreaded.nicks.add(nickname);
             while(line != null){
                 try{
                     line = in.readLine();
+                    //Verifico se il comando scritto è uguale a "ListaUtenti"
                     if(line.equals("ListaUtenti")){
                         for(int i = 0; i < ServerTestoMultiThreaded.nicks.size(); i++){
                             System.out.println((String) ServerTestoMultiThreaded.nicks.get(i));
@@ -48,7 +49,7 @@ class SocketWorker implements Runnable {
                     else{   
                         //Manda lo stesso messaggio appena ricevuto con in aggiunta il "nome" del client
                         out.println(nickname + ">> " + line);
-                        //scrivi messaggio ricevuto su terminale
+                        //scrivi messaggio ricevuto sul terminale
                         System.out.println(nickname + ">> " + line);
                     }
                 } catch (IOException e) {
