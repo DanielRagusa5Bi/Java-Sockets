@@ -11,6 +11,9 @@ import java.util.logging.Logger;
 /**
  *
  * @author Prof. Matteo Palitto
+ * @author Jianu Alina
+ * @author Ragusa Daniel
+ * @author Stropiana Alessandro
  */
 class listener implements Runnable {
   private Socket client;
@@ -29,7 +32,7 @@ class listener implements Runnable {
         try{
           in = new BufferedReader(new InputStreamReader(client.getInputStream()));
         } catch (IOException e) {
-          System.out.println("IO Error!!!");
+          System.out.println("Input/Output Error!!!");
           System.exit(-1);
         }
 
@@ -38,8 +41,8 @@ class listener implements Runnable {
         try {
             while ((testoDaServer = in.readLine()) != null) {
                 System.out.println(testoDaServer);
-                //nel caso il testo ricevuto dal Server contiene "Bye." termina il Client
-                if (testoDaServer.contains("Bye.")) {
+                //nel caso il testo ricevuto dal Server contiene "uscita" termina il Client
+                if (testoDaServer.contains("uscita")) {
                     client.close();
                     System.exit(0);
                     break;
@@ -51,9 +54,10 @@ class listener implements Runnable {
                 client.close();
                 System.exit(-1);
             } catch (IOException ex) {
-                System.out.println("Error nella chiusura del Socket");
+                System.out.println("Errore nella chiusura del Socket");
                 System.exit(-1);
             }
         }
     }
 }
+
