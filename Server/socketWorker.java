@@ -1,3 +1,13 @@
+/*
+ * socketWorker.java ha il compito di gestire la connessione al socket da parte di un Client.
+ * Elabora il testo ricevuto che in questo caso viene semplicemente mandato indietro con l'aggiunta 
+ * di una indicazione che e' il testo che viene dal Server.
+ */
+import java.net.*;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Prof. Matteo Palitto
@@ -7,16 +17,16 @@
  */
 class SocketWorker implements Runnable {
     private Socket client;
-    String nickname; //dichiaro la variabile di tipo String
+    String nickname; //dichiaro la variabile di tipo string
 
     
-    //Constructor: inizializza le variabili
+    //Construttore: inizializza le variabili
     SocketWorker(Socket client) {
         this.client = client;
-        System.out.println("Connessione stabilita con: " + client); //
+        System.out.println("Connessione con: " + client);
     }
     
-    // Questa e' la funzione che viene lanciata quando il nuovo "Thread" viene lanciato
+    // Questa è la funzione che viene creata quando il nuovo "Thread" si genera
     public void run(){
         
         try{
@@ -31,7 +41,7 @@ class SocketWorker implements Runnable {
                 System.out.println("Errore: input/output fallito");
                 System.exit(-1);
             }
-            // Codice che permette di stampare la lista degli uteni connessi, con il commando "ListaUtenti"
+            // Codice che permette di stampare la lista degli uteni connessi
             String line = "";
             int clientPort = client.getPort(); //il "nome" del mittente
             nickname = in.readLine();
@@ -39,7 +49,6 @@ class SocketWorker implements Runnable {
             while(line != null){
                 try{
                     line = in.readLine();
-                    //Verifico se il comando scritto è uguale a "ListaUtenti"
                     if(line.equals("ListaUtenti")){
                         for(int i = 0; i < ServerTestoMultiThreaded.nicks.size(); i++){
                             System.out.println((String) ServerTestoMultiThreaded.nicks.get(i));
@@ -47,22 +56,22 @@ class SocketWorker implements Runnable {
                         }
                     }
                     else{   
-                        //Manda lo stesso messaggio appena ricevuto con in aggiunta il "nome" del client
+                        //Manda lo stesso messaggio con in aggiunta il "nome" del client
                         out.println(nickname + ">> " + line);
-                        //scrivi messaggio ricevuto sul terminale
+                        //scrivi il messaggio ricevuto su terminale
                         System.out.println(nickname + ">> " + line);
                     }
                 } catch (IOException e) {
-                    System.out.println("lettura fallita");
+                    System.out.println("lettura da socket fallito");
                     System.exit(-1);
                 }
                 
             }
             try {
                 client.close();
-                System.out.println("connessione con client: " + client + " terminata!");
+                System.out.println("connessione con il client: " + client + " terminata!");
             } catch (IOException e) {
-                System.out.println("Errore connessione con client: " + client);
+                System.out.println("Errore connessione con il client: " + client);
             }
         } catch (IOException ex) {
           Logger.getLogger(SocketWorker.class.getName()).log(Level.SEVERE, null, ex);
